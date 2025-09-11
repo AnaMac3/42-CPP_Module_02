@@ -26,9 +26,9 @@
 ### Fixed-point numbers
 
 **Integers and floating-point numbers**
-Understanding and Using Floating Point Numbers: https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
-Floating point number representation: https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html
-rinting floating point numbers: https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html
+Understanding and Using Floating Point Numbers: https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html  
+Floating point number representation: https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html  
+rinting floating point numbers: https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html  
 
 **Fixed-point numbers**: EXPLICARRR QUÉ SON, POR QUÉ SON MEJORES EN CUANTO A PERFORMANCE, ACCURACY, RANGO, PRECISIÓN...
 
