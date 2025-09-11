@@ -1,0 +1,36 @@
+CPP Module 02 Explicaciones Generales
+
+New rules:
+	- Orthodox Canonical Form: implementar las cuatro funciones miembro requeridas:
+		* Default constructor
+		* Copy constructor
+		* Copy assignment operator
+		* Destructor
+	- Separar el código de la clase en dos archivos: 
+		* el header .hpp con la definición de la clase
+		* el source file .cpp con la implementación
+		
+ex00: My First Class in Orthodox Canonical Form
+
+	Integers and floating-point numbers:
+		-> Understanding and Using Floating Point Numbers: https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html
+		-> Floating point number representation: https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html
+		-> Printing floating point numbers: https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html
+		
+	Fixed-point numbers: nuevo tipo, que aunque no están en los scalar types de la mayoría de lenguajes, ofrecen un valioso balance entre performance, accuracy, rango y precisión. Por eso son particularmente aplicables en computer graphics, procesamiento de sonido o programación científica.
+	
+	C++ no tiene fixed-point numbers, así que los vamos a añadir.
+	
+	Articulo de Berkely sobre Fixed Pointe Numbers -> https://web.archive.org/web/20231224143018/https://inst.eecs.berkeley.edu/~cs61c/sp06/handout/fixedpt.html
+	
+	Crear una clase en Orthodox Canonical Form que represente un fixed-point number:
+		- Private members:
+			- integer para guardar el valor del fixed-point
+			- static constant integer para guardar el número de bits fraccionales(?). Su valor será siempre el int literal 8
+		- Public members:
+			- default constructor que iniciaiza el valor ixed-point a 0
+			- Copia del constructor
+			- Copia del assignment operator overload
+			- Destructor
+			- Función miembro 'int getRawBits(void) const' que devuelve el valor crudo del valor del fixed-point
+			- Función miembro 'void setRawBits(int const raw)' que settea el valor crudo del número fixed-point
