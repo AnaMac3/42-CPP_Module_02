@@ -75,7 +75,22 @@ El valor del número es las veces de la mantissa (?) 2^x, siendo x el exponente.
 **Fixed-point numbers**  
 Los floating point numbers no son la única manera de trabajar y representar números con parte fraccional. Los números de tipo fixed point se usan el procesamiento de señal digital y aplicaciones de juegos, donde el performance a veces es más importante que la precisión. 
 
-La clave para representar números fraccionales es el concepto de binary point: es como el punto decimal en el sistema decimal. Actúa como divisor entre el entero y la parte fraccional del número. 
+La clave para representar números fraccionales es el concepto de binary point: es como el punto decimal en el sistema decimal. Actúa como divisor entre el entero y la parte fraccional del número.  
+
+¿Cómo convertir de int a fixed-point? 
+- Operador << -> desplazamiento a la izquierda. x << n -> desplaza todos los bits de x n posiciones hacia la izquierda, rellenando con ceros por la derecha. Matemáticamente, es lo mismo que hacer x * 2^n (mientras no haya overflow).
+  Ejemplo con 8 bits:
+  x = 5 -> 00000101
+  x << 1 -> 00001010 = 10 (5 * 2^1)
+  x << 2 -> 00010100 = 20 (5 * 2^2)
+- Para el fixed point hemos definido la parte fraccionaria como de 8 bits. Esto significa que guardamos los números en una variable de tipo int, pero con sus últimos 8 dígitos interpretados como la parte fraccionaria. La unidad se guarda como 1 << 8 = 256, porque multiplicamos el número real por 2^8 = 256 para mover la coma 8 posiciones a la derecha.
+  Ejemplo:
+  int x = 5 -> 00000000 00000000 00000101
+  5 << 8 -> 00000000 00000101 00000000 = 1280
+  Guardamos el valor 5 como 1280 en int, que interpretado como fixed, representa 5.0.
+  Otro ejemplo:
+  int x = 5.5
+  5.5 * 256 = 1408 -> 00000000 00000101 10000000
 
 ------------------
 
