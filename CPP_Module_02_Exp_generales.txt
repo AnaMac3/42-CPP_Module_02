@@ -34,3 +34,14 @@ ex00: My First Class in Orthodox Canonical Form
 			- Destructor
 			- Función miembro 'int getRawBits(void) const' que devuelve el valor crudo del valor del fixed-point
 			- Función miembro 'void setRawBits(int const raw)' que settea el valor crudo del número fixed-point
+
+--------------------------------
+- ✅ ex00: funciona y bonito
+- ❌ ex01
+- ❌ ex02
+- ❌ ex03 (no obligatorio)
+
+
+
+
+
