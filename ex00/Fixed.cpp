@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:58:33 by amacarul          #+#    #+#             */
-/*   Updated: 2025/09/12 12:01:56 by root             ###   ########.fr       */
+/*   Updated: 2025/09/12 16:28:55 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ Fixed::Fixed(const Fixed& other)
 
 Fixed::~Fixed()
 {
-    
+	std::cout << "Destructor called" << std::endl;
 }
 
 //------------------------OPERATORS                     ------------------------
