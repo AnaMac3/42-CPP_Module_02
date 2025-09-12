@@ -3,20 +3,20 @@ NAME = fixed
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 
+INCLUDES = Fixed.hpp \
+
 SRCS = Fixed.cpp \
 		main.cpp \
 
-INCLUDES = Fixed.hpp \
-
-OBJ = $(SRC:.cpp=.o)
+OBJ = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -c $(NAME) -o $(OBJ)
+	$(CC) $(CFLAGS) -o $(NAME) $(OBJ)
 
 %.o: %.cpp $(INCLUDES)
-	$(CC) $(CFLAGS) -c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	rm -f $(OBJ)
