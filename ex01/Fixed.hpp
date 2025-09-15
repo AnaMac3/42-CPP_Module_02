@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:58:30 by amacarul          #+#    #+#             */
-/*   Updated: 2025/09/12 16:59:13 by root             ###   ########.fr       */
+/*   Updated: 2025/09/15 11:35:45 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@
  * 			- Stores a fixed-point number in an integer '_value', containing
  * 			both integer and fractional parts.
  * 			- Uses a class-wide constant '_fractionalBits' that indicates
- * 			how many bits of '_value' are considered fractional.
+ * 			how many bits of '_value' are considered fractional (8 -> scale
+ * 			factor 2^8 = 256).
  * 			- Constructors:
  * 				* Default constructor
  * 				* Copy constructor

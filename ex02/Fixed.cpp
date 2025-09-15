@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:58:33 by amacarul          #+#    #+#             */
-/*   Updated: 2025/09/12 16:55:52 by root             ###   ########.fr       */
+/*   Updated: 2025/09/15 12:39:32 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ const int Fixed::_fractionalBits = 8;
 
 Fixed::Fixed() : _value(0)
 {
-	std::cout << "Default constructor called" << std::endl;
+	//std::cout << "Default constructor called" << std::endl;
 }
 
 /**
@@ -58,7 +58,7 @@ Fixed::Fixed() : _value(0)
 
 Fixed::Fixed(const Fixed& other)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	//std::cout << "Copy constructor called" << std::endl;
 	*this = other; 
 	//this->_value = other._value;
 	//this->_value = other.getRawBits();
@@ -86,7 +86,7 @@ Fixed::Fixed(const Fixed& other)
 
 Fixed::Fixed(const int input)
 {
-	std::cout << "Int constructor called" << std::endl;
+	//std::cout << "Int constructor called" << std::endl;
 	this->_value = input << this->_fractionalBits; 
 }
 
@@ -105,9 +105,10 @@ Fixed::Fixed(const int input)
  * 
  * @param input	Floating-point value to convert into fixed-point format.
  */
+
 Fixed::Fixed(const float input)
 {
-	std::cout << "Float constructor called" << std::endl;
+	//std::cout << "Float constructor called" << std::endl;
 	this->_value = roundf(input * (1 << this->_fractionalBits));
 }
 
@@ -120,10 +121,10 @@ Fixed::Fixed(const float input)
 
 Fixed::~Fixed()
 {
-    std::cout << "Destructor called" << std::endl;
+   // std::cout << "Destructor called" << std::endl;
 }
 
-//------------------------OPERATORS                     ------------------------
+//------------------------PUBLIC MEMBER OPERATORS       ------------------------
 
 /**
  * @brief   Copy of assignment operator overload.
@@ -137,11 +138,261 @@ Fixed::~Fixed()
 
 Fixed &Fixed::operator=(const Fixed& other)
 {
-	std::cout << "Copy assignment operator called" << std::endl; 
+	//std::cout << "Copy assignment operator called" << std::endl; 
     if (this != &other)
 		this->_value = other.getRawBits();
 	
 	return (*this);
+}
+
+//------------------------Comparision operators         ------------------------
+
+/**
+ * @brief	Compare if this Fixed is strictly less than another
+ * 			- Convert both opernds to float using toFloat()
+ * 			- Perform the floating-point comparision using '<'
+ * 			- Return the boolean result (0: false, 1: true);
+ * 			
+ * 			- The member is marked 'const' to garantee it will not modify *this
+ * 			- The parameter is passed as constant reference to avoid the copy
+ * 
+ * @param other	The right-hand size Fixed to compare with (passed as constant
+ * 				reference)
+ * @return	True if (*this) < other, false otherwise
+ */
+
+bool	Fixed::operator<(const Fixed& other) const
+{
+	return (this->toFloat() < other.toFloat());
+}
+
+/**
+ * @brief	Compare if this Fixed is strictly greater than another.
+ * 			- Convert both opernds to float using toFloat()
+ * 			- Compare using '>'
+ * 			- Return the boolean result
+ * 
+ * @param other	The right-hand side Fixed to compare with (passed as constant
+ * 				reference)
+ * @return	True if (*this) > other, false otherwise
+ */
+
+bool	Fixed::operator>(const Fixed& other) const
+{
+	return (this->toFloat() > other.toFloat());
+}
+
+/**
+ * @brief	Compare if this Fixed is less than or equal to another.
+ * 			- Convert both operands to float using toFloat()
+ * 			- Compare using '<='
+ * 			- Return the boolean result
+ * 
+ * @param other	The right-hand side Fixed to compare with (passed as constant
+ * 				reference)
+ * @return	True if (*this) <= other, false otherwise
+ */
+
+bool	Fixed::operator<=(const Fixed& other) const
+{
+	return (this->toFloat() <= other.toFloat());
+}
+
+/**
+ * @brief	Compare if this Fixed is greater than or equal to another.
+ * 			- Convert both operands to float using toFloat()
+ * 			- Compare using '>='
+ * 			- Return the boolean result
+ * 
+ * @param other	The right-hand side Fixed to compare with (passed as constant
+ * 				reference)
+ * @return	True if (*this) >= other, false otherwise
+ */
+
+bool	Fixed::operator>=(const Fixed& other) const
+{
+	return (this->toFloat() >= other.toFloat());
+}
+
+/**
+ * @brief	Equality comparision between two Fixed values.
+ * 			- Convert both operands to float using toFloat()
+ * 			- Compare using '=='
+ * 			- Return the boolean result
+ * 
+ * @param other	The right-hand side Fixed to compare with (passed as constant
+ * 				reference)
+ * @return	True if the numeric values are equal, false otherwise.
+ */
+
+bool	Fixed::operator==(const Fixed& other) const
+{
+	return (this->toFloat() == other.toFloat());
+}
+
+/**
+ * @brief	Inequality comparision between two Fixed values.
+ * 			- Convert both operands to float using toFloat()
+ * 			- Compare using '!='
+ * 			- Return the boolean result
+ * 
+ * @param other	The right-hand side Fixed to compare with (passed as constant
+ * 				reference)
+ * @return	True if the numeric values differ, false otherwise.
+ */
+
+bool	Fixed::operator!=(const Fixed& other) const
+{
+	return (this->toFloat() != other.toFloat());
+}
+
+//------------------------Arithmetic operators          ------------------------
+
+
+/**
+ * @brief	Add two Fixed numbers and return the fixed result.
+ * 			- Convert both operands to float using toFloat()
+ * 			- Compute the sum as floats
+ * 			- Return the resulting fixed value
+ * 
+ * @param other	The right-hand operand (passed as a constant reference)
+ * @return	A Fixed-point value equial to (this + other);
+ */
+
+Fixed	Fixed::operator+(const Fixed& other) const
+{
+	Fixed result(this->toFloat() + other.toFloat());
+	return (result);
+}
+
+/**
+ * @brief	Substract two Fixed numbers and return the fixed result.
+ * 			- Convert both operands to float using toFloat()
+ * 			- Compute (this - other)
+ * 			- Return the resulting fixed value
+ * 
+ * @param other	The right-hand operand (passed as a constant reference)
+ * @return	A Fixed-point value equial to (this - other);
+ */
+
+Fixed	Fixed::operator-(const Fixed& other) const
+{
+	Fixed result(this->toFloat() - other.toFloat());
+	return (result);
+}
+
+/**
+ * @brief	Multiply two Fixed numbers and return the fixed result.
+ * 			- Convert both operands to float using toFloat()
+ * 			- Compute the product
+ * 			- Return the resulting fixed value
+ * 
+ * @param other	The right-hand operand (passed as a constant reference)
+ * @return	A Fixed-point value equial to (this * other);
+ */
+
+Fixed	Fixed::operator*(const Fixed& other) const
+{
+	Fixed result(this->toFloat() * other.toFloat());
+	return (result);
+}
+
+/**
+ * @brief	Divide two Fixed numbers and return the fixed result.
+ * 			- Convert both operands to float using toFloat()
+ * 			- Compute (this / other). No special handling for division-by-zero
+ * 			- Return the resulting fixed value
+ * 
+ * @param other	The right-hand operand (passed as a constant reference)
+ * @return	A Fixed-point value equial to (this / other);
+ */
+
+Fixed	Fixed::operator/(const Fixed& other) const
+{
+	Fixed result(this->toFloat() / other.toFloat());
+	return (result);
+}
+
+//------------------------Increment/decremente operators------------------------
+
+/**
+ * @brief	Pre-increment (++x): increase the fixed value by the smallest step
+ * 			and return the updated value.
+ * 			- Increment internal raw '_value' by 1. (1 unit in '_value'
+ * 			corresponds to 1 / (2^_fractionalBits) in real terms; with 8
+ * 			fractional bits the step us 1/256)
+ * 			- Return a reference to the updated object, allowing chained
+ * 			pre-increments ('++(++x)') without extra copies
+ * 
+ * @return	A Fixed containing the incremented value (returned by reference)
+ */
+
+Fixed&	Fixed::operator++()
+{
+	this->_value ++;
+	return (*this);
+}
+
+/**
+ * @brief	Pre-decrement (--x): ecrease the fixed value by the smallest step
+ * 			and return the updated value.
+ * 			- Decrement internal raw '_value' by 1. (1 unit in '_value'
+ * 			correspondos to 1 / (2^_fractionalBits) in real terms; with 8
+ * 			fractional bits the step us 1/256)
+ * 			- Return a reference to the updated object.
+ * 
+ * @return	A Fixed containing the decremented value (returned by reference)
+ */
+
+Fixed&	Fixed::operator--()
+{
+	this->_value --;
+	return (*this);
+}
+
+/**
+ * @brief	Post-increment operator (x++)
+ * 			- Distinguishable from pre-increment by the dummy 'int' parameter.
+ * 			- Creates a copy of the current object (before increment)
+ * 			- Increments the internal fixed-point value of the current object
+ * 			- Returns the copy, so the caller receives the value as it was
+ * 			before the increment.
+ * 			Example:
+ * 			Fixed a = 5;
+ * 			Fixed b = a++; //b gets 5, a becomes 6
+ * 
+ * @param int	Unused dummy int parameter (only used to differentiate syntax)
+ * @return	A copy of the object before it was incremented.
+ */
+
+Fixed	Fixed::operator++(int)
+{
+	Fixed	tmp = *this;
+	++this -> _value;
+	return (tmp);
+}
+
+/**
+ * @brief	Post-decrement operator (x--)
+ * 			- Distinguishable from pre-increment by the dummy 'int' parameter.
+ * 			- Creates a copy of the current object (before decrement)
+ * 			- Decrements the internal fixed-point value of the current object
+ * 			- Returns the copy, so the caller receives the value as it was
+ * 			before the increment.
+ * 			Example:
+ * 			Fixed a = 5;
+ * 			Fixed b = a--; //b gets 5, a becomes 4
+ * 
+ * @param int	Unused dummy int parameter (only used to diffentiate syntax)
+ * @return	A copy of the object before it was decremented.
+ */
+
+ 
+Fixed	Fixed::operator--(int)
+{
+	Fixed	tmp = *this; //copia temporal del objeto actual this
+	--this -> _value; //se decrementa el valor interno _value del objeto fixed
+	return (tmp); //se devuelve la copia creada antes del incremento
 }
 
 //------------------------PUBLIC METHODS                ------------------------
@@ -200,6 +451,123 @@ float	Fixed::toFloat(void) const
 	return ((float)this->_value / (float)(1 << this->_fractionalBits));
 }
 
+/**
+ * @brief	Return a reference to the smaller of two Fixed objects (non-const
+ * 			overload).
+ * 			- Compare 'fixed1' and 'fixed2' by converting to float
+ * 			- If fixed1 <= fixed2 return a reference to fixed1; otherwise,
+ * 			return a reference to fixed2
+ * 			
+ * 			- Parameters are 'Fixed&' (non-const) so callers can pass modifiable
+ * 			objects
+ * 			- The function returns 'Fixed&' (non-const) to allow the caller to
+ * 			modify the returned object.
+ * 			- The function is declared 'static' in the class: it does not use
+ * 			'this' and is called as 'Fixed::min(a, b)'
+ * 			- This function returns a reference to one of the parameters. It is
+ * 			the caller responsibility to ensure the referenced object outlives
+ * 			the returned reference
+ * 
+ *  
+ * @param fixed1	Left operand (modifiable)
+ * @param fixed2	Right operand (modifiable)
+ * @return	Reference to the smaller object
+ */
+
+Fixed&	Fixed::min(Fixed& fixed1, Fixed& fixed2)
+{
+	if (fixed1.toFloat() <= fixed2.toFloat())
+		return (fixed1);
+	else
+		return (fixed2);
+}
+
+/**
+ * @brief	Return a reference to the smaller of two Fixed object (const 
+ * 			overload).
+ * 			- Compare 'fixed1' and 'fixed2' by converting to float
+ * 			- If fixed1 <= fixed2 return a reference to fixed1; otherwise,
+ * 			return a reference to fixed2
+ * 
+ * 			- Accepts 'const Fixed&' so the function can be used with const
+ * 			objects or temporaries
+ * 			- The function is declared 'static' in the class: it does not use
+ * 			'this' and is called as 'Fixed::min(a, b)'
+ * 			- Returns 'const Fixed&' to prevent the caller from modifying the
+ * 			returned object
+ * 			- The returned reference aliases onte of the parameters; the	
+ * 			caller must ensure the parameter outlives the reference
+ * 
+ * @param fixed1	Left operand (read-only)
+ * @param fixed2	Right operand (read-only)
+ * @return	Const reference to the smaller object
+ */
+
+const Fixed&	Fixed::min(const Fixed& fixed1, const Fixed& fixed2)
+{
+	if (fixed1.toFloat() <= fixed2.toFloat())
+		return (fixed1);
+	else
+		return (fixed2);
+}
+
+
+/**
+ * @brief	Return a reference to the larger of two Fixed objects (non-const
+ * 			overload)
+ * 			- Compare both operands using toFloat()
+ * 			- Return a reference to whichever is greater
+ * 
+ * 			- Parameters are 'Fixed&' (non-const) so callers can pass modifiable
+ * 			objects
+ * 			- The function returns 'Fixed&' (non-const) to allow the caller to
+ * 			modify the returned object.
+ * 			- The function is declared 'static' in the class: it does not use
+ * 			'this' and is called as 'Fixed::max(a, b)'
+ * 			- This function returns a reference to one of the parameters. It is
+ * 			the caller responsability to ensure the referenced object outlives
+ * 			the returned reference
+ * 
+ * @param fixed1	Left operand (modifiable)
+ * @param fixed2	Right operand (modifiable)
+ * @return	Reference to the larger object
+ */
+
+Fixed&	Fixed::max(Fixed& fixed1, Fixed& fixed2)
+{
+	if (fixed1.toFloat() >= fixed2.toFloat())
+		return (fixed1);
+	else
+		return (fixed2);
+}
+
+/**
+ * @brief	Return a reference to the larger of two Fixed object (const 
+ * 			overload).
+ * 			- Compare 'fixed1' and 'fixed2' by converting to float
+ * 			- Return a const reference to the larger one
+ * 
+ * 			- Accepts 'const Fixed&' so the function can be used with const
+ * 			objects or temporaries
+ * 			- The function is declared 'static' in the class: it does not use
+ * 			'this' and is called as 'Fixed::max(a, b)'
+ * 			- Returns 'const Fixed&' to prevent the caller from modifying the
+ * 			returned object
+ * 			- The returned reference aliases onte of the parameters; the	
+ * 			caller must ensure the parameter outlives the reference
+ * 
+ * @param fixed1	Left operand (read-only)
+ * @param fixed2	Right operand (read-only)
+ * @return	Const reference to the larger object
+ */
+
+const Fixed&	Fixed::max(const Fixed& fixed1, const Fixed& fixed2)
+{
+	if (fixed1.toFloat() >= fixed2.toFloat())
+		return (fixed1);
+	else
+		return (fixed2);
+}
 
 //------------------------NON-MEMBER OPERATORS         ------------------------
 
