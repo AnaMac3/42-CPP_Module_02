@@ -37,8 +37,8 @@ ex00: My First Class in Orthodox Canonical Form
 
 --------------------------------
 - ✅ ex00: funciona y bonito
-- ❌ ex01
-- ❌ ex02
+- ✅ ex01: funciona y explicado
+- ✅ ex02
 - ❌ ex03 (no obligatorio)
 
 
