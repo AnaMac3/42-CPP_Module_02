@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:58:30 by amacarul          #+#    #+#             */
-/*   Updated: 2025/09/15 11:35:45 by root             ###   ########.fr       */
+/*   Updated: 2025/09/19 11:39:32 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
  * 				* Copy constructor
  * 				* Integer constructor
  * 				* Float constructor
- * 			- Destructor
  * 			- Assignment operator
+ * 			- Destructor
  * 			- Raw acces methods:
  * 				* getRawBits()
  * 				* setrawBits(int)
@@ -50,10 +50,8 @@ class   Fixed
 		Fixed(const Fixed& other);
 		Fixed(const int input);
 		Fixed(const float input);
-		
-		~Fixed(void);
-
 		Fixed&	operator=(const Fixed& other);
+		~Fixed(void);
 
 		int		getRawBits(void) const;
 		void	setRawBits(int const raw);

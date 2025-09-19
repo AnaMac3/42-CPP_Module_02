@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:58:33 by amacarul          #+#    #+#             */
-/*   Updated: 2025/09/12 16:28:55 by root             ###   ########.fr       */
+/*   Updated: 2025/09/19 11:40:11 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
  */
 
 const int Fixed::_fractionalBits = 8;
-
-//------------------------CONSTRUCTORS                  ------------------------
 
 /**
  * @brief	Default constructor.
@@ -64,20 +62,6 @@ Fixed::Fixed(const Fixed& other)
 	//this->_value = other.getRawBits();
 }
 
-//------------------------DESTRUCTOR                    ------------------------
-
-/**
- * @brief   Destroy the Fixed object.
- * 			Called automatically when the object goes out of scope or is deleted
- */
-
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called" << std::endl;
-}
-
-//------------------------OPERATORS                     ------------------------
-
 /**
  * @brief   Copy of assignment operator overload.
  * 			- Returns 'Fixed&' to avoid unnecessary copying and to allowe
@@ -97,7 +81,15 @@ Fixed &Fixed::operator=(const Fixed& other)
 	return (*this);
 }
 
-//------------------------PUBLIC METHODS                ------------------------
+/**
+ * @brief   Destroy the Fixed object.
+ * 			Called automatically when the object goes out of scope or is deleted
+ */
+
+Fixed::~Fixed()
+{
+	std::cout << "Destructor called" << std::endl;
+}
 
 /**
  * @brief   Returns the raw integer representation of the fixed-point number

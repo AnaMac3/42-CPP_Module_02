@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:58:27 by amacarul          #+#    #+#             */
-/*   Updated: 2025/09/12 16:52:01 by root             ###   ########.fr       */
+/*   Updated: 2025/09/19 12:12:46 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,26 @@ int main(void)
 	std::cout << "b is " << b.toInt() << " as integer" << std::endl;
 	std::cout << "c is " << c.toInt() << " as integer" << std::endl;
 	std::cout << "d is " << d.toInt() << " as integer" << std::endl;
+
+	//My tests
+
+	std::cout << "------------------------------------" << std::endl;
+	
+	Fixed const float1(0.1f);
+	std::cout << "Floating 0.1 is " << float1 << std::endl;
+	std::cout << "Raw bits: " << float1.getRawBits() << std::endl;
+	Fixed const float2(5.5f);
+	std::cout << "Floating 5.5 is " << float2 << std::endl;
+	std::cout << "Raw bits: " << float2.getRawBits() << std::endl;
+	Fixed const int1(5);
+	std::cout << "Integer 5 is " << int1 << std::endl;
+	std::cout << "Raw bits: " << int1.getRawBits() << std::endl;
+	Fixed const int2(1);
+	std::cout << "Integer 1 is " << int2 << std::endl;
+	std::cout << "Raw bits: " << int2.getRawBits() << std::endl;
+
+
+	std::cout << std::endl;
 
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:58:30 by amacarul          #+#    #+#             */
-/*   Updated: 2025/09/15 12:31:47 by root             ###   ########.fr       */
+/*   Updated: 2025/09/19 11:40:53 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
  * 				* Copy constructor
  * 				* Integer constructor
  * 				* Float constructor
+ *			- Assignment operator
  * 			- Destructor
  * 			- Public member operators:
- * 				* Assignment operator
  * 				* Comparision operators
  * 				* Arithmetic operators
  * 				* Increment/decrement operators
@@ -55,12 +55,9 @@ class	Fixed
 		Fixed(const Fixed& other);
 		Fixed(const int input);
 		Fixed(const float input);
-		
+		Fixed&	operator=(const Fixed& other);
 		~Fixed(void);
 
-		//Public member operators
-		//Assignment operator
-		Fixed&	operator=(const Fixed& other);
 		//Comparision operators
 		bool	operator<(const Fixed& other) const;
 		bool	operator>(const Fixed& other) const;

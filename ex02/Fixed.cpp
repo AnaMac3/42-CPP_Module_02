@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:58:33 by amacarul          #+#    #+#             */
-/*   Updated: 2025/09/15 12:39:32 by root             ###   ########.fr       */
+/*   Updated: 2025/09/19 11:41:36 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@
  */
 
 const int Fixed::_fractionalBits = 8;
-
-//------------------------CONSTRUCTORS                  ------------------------
 
 /**
  * @brief	Default constructor.
@@ -112,20 +110,6 @@ Fixed::Fixed(const float input)
 	this->_value = roundf(input * (1 << this->_fractionalBits));
 }
 
-//------------------------DESTRUCTOR                    ------------------------
-
-/**
- * @brief   Destroy the Fixed object.
- * 			Called automatically when the object goes out of scope or is deleted
- */
-
-Fixed::~Fixed()
-{
-   // std::cout << "Destructor called" << std::endl;
-}
-
-//------------------------PUBLIC MEMBER OPERATORS       ------------------------
-
 /**
  * @brief   Copy of assignment operator overload.
  * 			- Returns 'Fixed&' to avoid unnecessary copying and to allowe
@@ -143,6 +127,16 @@ Fixed &Fixed::operator=(const Fixed& other)
 		this->_value = other.getRawBits();
 	
 	return (*this);
+}
+
+/**
+ * @brief   Destroy the Fixed object.
+ * 			Called automatically when the object goes out of scope or is deleted
+ */
+
+Fixed::~Fixed()
+{
+   // std::cout << "Destructor called" << std::endl;
 }
 
 //------------------------Comparision operators         ------------------------

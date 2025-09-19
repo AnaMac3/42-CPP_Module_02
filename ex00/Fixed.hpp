@@ -6,7 +6,7 @@
 /*   By: root <root@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:58:30 by amacarul          #+#    #+#             */
-/*   Updated: 2025/09/15 11:35:53 by root             ###   ########.fr       */
+/*   Updated: 2025/09/19 11:38:15 by root             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ class   Fixed
 	public:
 		Fixed(void);
 		Fixed(const Fixed& other);
-		~Fixed(void);
-
 		Fixed& operator=(const Fixed& other);
+		~Fixed(void);
 
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
