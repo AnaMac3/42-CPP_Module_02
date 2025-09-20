@@ -5,7 +5,6 @@ Object-Oriented Programming in C++.
 ## Table of Contents
 - [Orthodox Canonical Form](#orthodox-canonical-form)
 - [Fixed-point numbers](#fixed-point-numbers)
-- [How to use](#how-to-use)
 - [More info](#more-info)
 
 ----------------------------------------
@@ -147,19 +146,6 @@ This means that we store the value in a variable of int type, but with its last 
   - Divide by 2^n
 
 ------------------
-
-### How to use
-
-For each exercise (each subdirectory):
-- Compile:
-  
-      make
-
-- Run the executable:
-
-      ./fixed
-  
-
 
 ### More info
 
