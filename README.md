@@ -1,6 +1,9 @@
 # 42-CPP_Module_02
 42 Common Core CPP Module 02.  
-Object-Oriented Programming in C++.  
+- Object-Oriented Programming in C++
+- Orthodox Canonical Form
+- Ad-hoc Polymorphism
+- Operator Overloading
 
 ## Table of Contents
 - [Orthodox Canonical Form](#orthodox-canonical-form)
