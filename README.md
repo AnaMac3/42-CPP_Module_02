@@ -1,4 +1,4 @@
-# 42-CPP_Module_02
+# 42 - CPP Module 02
 42 Common Core CPP Module 02.  
 - Object-Oriented Programming in C++
 - Orthodox Canonical Form
